@@ -12,9 +12,8 @@ webTui/
 ├── scripts/               ← Copy-paste templates referenced by the skill
 │   ├── core/              ← Required base files for every new app
 │   └── options/           ← Optional feature modules (A–J)
-├── test/
-│   └── devmon/            ← Demo app built from the skill
-└── ref1/ ref2/ ref3/      ← Original reference implementations
+└── test/
+    └── devmon/            ← Demo app built from the skill
 ```
 
 ---
@@ -109,18 +108,6 @@ python server.py
 ```
 
 It auto-creates three sessions (`devmon-logs`, `devmon-shell`, `devmon-build`) on first connect, with pre-seeded quick commands (disk usage, memory, process list) and a resizable split layout.
-
----
-
-## Reference Implementations
-
-The three `ref*/` folders were the original projects this skill was distilled from:
-
-| Dir | Name | Notable features |
-|-----|------|-----------------|
-| `ref1/` | ECR | YAML profile-driven runner, SSH remote execution, JSONL event log, artifact download |
-| `ref2/` | WebTui | tmux+PTY, xterm.js, X11/VNC GUI panels, per-tab socket isolation, detachable windows |
-| `ref3/` | Claude Control Plane | tmux+PTY, Docker lifecycle, markdown editor, YAML agent registry, multi-session tabs |
 
 ---
 

@@ -41,16 +41,15 @@ webTui/
 │   │   ├── opt_i_splitter.{js,css}    drag-to-resize split panel
 │   │   └── opt_j_config_editor.py     live YAML config editor in UI
 │   └── requirements.txt
-├── test/
-│   └── devmon/            ← demo app (Core + Options A + I), Python syntax verified
-└── ref1/ ref2/ ref3/      ← original reference implementations (do not modify)
+└── test/
+    └── devmon/            ← demo app (Core + Options A + I), Python syntax verified
 ```
 
 ---
 
 ## The Three Reference Implementations (What We Learned)
 
-These were studied at the start of the session to extract the common pattern.
+These three projects were studied to extract the common pattern and are now deleted. The knowledge below is the distilled output — read this instead of looking for the folders.
 
 ### ref1 — ECR (Experiment Control & Record)
 **Does NOT use tmux.** SSH/subprocess execution. Notable unique features:
@@ -239,7 +238,7 @@ This "cold-read test" validates the skill is self-contained enough for a fresh C
 
 ## What NOT to Do
 
-- Do not modify `ref1/`, `ref2/`, `ref3/` — they are the source of truth for the original implementations
+- Do not look for `ref1/`, `ref2/`, `ref3/` — those folders have been deleted; all knowledge from them is captured in the "Three Reference Implementations" section above
 - Do not add build steps (npm, webpack, etc.) to frontend code — CDN only
 - Do not change `async_mode` from `eventlet` — threading mode breaks concurrent WebSocket
 - Do not use `yaml.load()` — always `yaml.safe_load()`
