@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>devmon — Developer Monitor Panel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ── Header ─────────────────────────────────────────────────────────── -->
+    <header id="header">
+      <span id="status-dot" class="dot dot-disconnected" title="Connection status"></span>
+      <span id="app-title">devmon</span>
+      <span id="app-subtitle">Developer Monitor Panel</span>
+
+      <!-- Session tabs -->
+      <div id="session-tabs"></div>
+
+      <!-- Header actions -->
+      <div id="header-actions" style="display:flex;gap:6px;align-items:center;flex-shrink:0;">
+        <button onclick="sendSignal('SIGINT')" title="Send Ctrl-C (SIGINT)">Ctrl-C</button>
+        <button onclick="clearTerminal()" title="Clear terminal output">Clear</button>
+      </div>
+    </header>
+
+    <!-- ── Workspace: left panel | resize handle | right panel ──────────────── -->
+    <div id="workspace">
+
+      <!-- Left panel: quick-commands bar + terminal -->
+      <div id="left-panel">
+
+        <!-- Toolbar: current session name -->
+        <div id="toolbar">
+          <span id="current-session-name" title="Active session"></span>
+          <div style="flex:1;"></div>
+          <span style="font-size:10px;color:var(--text-muted);">
+            Scroll with mouse wheel · Type to send input
+          </span>
+        </div>
+
+        <!-- Quick commands button bar (Option A) -->
+        <div id="quick-commands-bar">
+          <span id="quick-commands-label">Quick:</span>
+          <div id="quick-commands" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
+        </div>
+
+        <!-- xterm.js terminal -->
+        <div id="terminal-container"></div>
+      </div>
+
+      <!-- Resize handle (Option I) -->
+      <div id="resize-handle" title="Drag to resize"></div>
+
+      <!-- Right panel: session info + quick command management -->
+      <div id="right-panel">
+        <div id="right-panel-header">
+          <span>&#9432;</span>
+          <span>Session Info</span>
+        </div>
+        <div id="right-panel-content">
+          <div class="info-card">
+            <div class="info-card-title">Connecting&hellip;</div>
+            <div style="color:var(--text-muted);font-size:12px;">
+              Waiting for server connection.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- #workspace -->
+  </div><!-- #app -->
+
+  <!-- CDN assets -->
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
