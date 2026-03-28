@@ -1,0 +1,1 @@
+# ccpan_skill_template
