@@ -1,0 +1,62 @@
+/* OPTION I — Resizable Split Panel CSS
+   Add to style.css or import separately. */
+
+#workspace {
+  display: flex;
+  overflow: hidden;
+  flex: 1;
+}
+
+#left-panel {
+  width: 60%;          /* initial width — draggable */
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#resize-handle {
+  width: 6px;
+  background: var(--border);
+  cursor: col-resize;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  z-index: 10;
+}
+#resize-handle:hover,
+#resize-handle:active { background: var(--accent); }
+
+#right-panel {
+  flex: 1;
+  min-width: 200px;
+  background: var(--bg-secondary);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Markdown pane inside right panel */
+#md-view {
+  padding: 16px;
+  line-height: 1.6;
+  overflow-y: auto;
+  flex: 1;
+}
+#md-view h1, #md-view h2, #md-view h3 { color: var(--accent); margin: 1em 0 0.4em; }
+#md-view code  { background: var(--bg-panel); padding: 1px 4px; border-radius: 3px; }
+#md-view pre   { background: var(--bg-panel); padding: 12px; border-radius: 4px; overflow-x: auto; }
+#md-view a     { color: var(--accent); }
+#md-view table { border-collapse: collapse; width: 100%; }
+#md-view td, #md-view th { border: 1px solid var(--border); padding: 4px 8px; }
+
+#md-editor {
+  flex: 1;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: none;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  resize: none;
+  outline: none;
+}

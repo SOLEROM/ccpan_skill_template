@@ -1,0 +1,13 @@
+# Core (required by every WebTUI app)
+flask>=3.0.0
+flask-socketio>=5.3.0
+eventlet>=0.33.0
+
+# Option E, J: YAML config / agent registry
+pyyaml>=6.0.1
+
+# Option H: SSH remote execution
+paramiko>=3.4.0
+
+# Optional: faster JSON serialisation
+# orjson>=3.9.0

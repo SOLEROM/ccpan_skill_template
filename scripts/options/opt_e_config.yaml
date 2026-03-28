@@ -1,0 +1,31 @@
+# Example config.yaml for Option E (Agent Registry)
+# Copy and customise for each new app.
+
+app:
+  host: 127.0.0.1
+  port: 5000
+  tmux_socket: myapp          # unique per app instance
+  session_prefix: "myapp-"
+  scrollback_limit: 10000
+
+agents:
+  - name: web-server
+    type: local_shell
+    cwd: /opt/myapp
+    auto_start: false
+    readme: docs/web.md
+    tags: [frontend]
+
+  - name: worker
+    type: docker
+    container: myapp-worker
+    cwd: /opt/myapp
+    auto_start: false
+    readme: docs/worker.md
+    tags: [backend, celery]
+
+  - name: db
+    type: docker
+    container: myapp-postgres
+    auto_start: false
+    tags: [database]

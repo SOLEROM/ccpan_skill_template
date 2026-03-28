@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Panel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <header id="header">
+      <span id="status-dot" class="dot dot-disconnected"></span>
+      <span id="app-title">Control Panel</span>
+      <div id="header-actions"></div>
+    </header>
+
+    <div id="workspace">
+      <aside id="sidebar">
+        <div class="sidebar-section-title">Sessions</div>
+        <div id="session-list"></div>
+        <button onclick="createSession()" style="margin-top:8px;width:100%">+ New Session</button>
+      </aside>
+
+      <main id="main">
+        <div id="toolbar">
+          <span id="current-session-name" class="session-label"></span>
+          <div style="flex:1"></div>
+          <button onclick="sendSignal('SIGINT')" title="Send Ctrl-C">Ctrl-C</button>
+          <button onclick="clearTerminal()">Clear</button>
+        </div>
+        <div id="terminal-container"></div>
+      </main>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

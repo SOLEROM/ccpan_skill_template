@@ -1,0 +1,157 @@
+/* ── Design tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --bg-primary:   #0a0c0f;
+  --bg-secondary: #0d1117;
+  --bg-panel:     #161b22;
+  --border:       #30363d;
+  --text-primary: #e6edf3;
+  --text-muted:   #8b949e;
+  --accent:       #58a6ff;
+  --success:      #3fb950;
+  --danger:       #ff7b72;
+  --warning:      #d29922;
+  --font-mono:    'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-primary);
+  color:      var(--text-primary);
+  font-family: var(--font-mono);
+  font-size:  13px;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────────────── */
+#app       { display: flex; flex-direction: column; height: 100vh; }
+#workspace { display: flex; flex: 1; overflow: hidden; }
+#main      { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+#header {
+  height: 44px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+#app-title { font-weight: 600; color: var(--text-primary); }
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────────── */
+#sidebar {
+  width: 220px;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 2px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.sidebar-section-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 4px 4px 6px;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────────────────────── */
+#toolbar {
+  height: 36px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.session-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Terminal container ──────────────────────────────────────────────────────── */
+#terminal-container {
+  flex: 1;
+  padding: 4px;
+  overflow: hidden;
+  background: #0d1117;
+}
+
+/* ── Status dot ──────────────────────────────────────────────────────────────── */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot-connected    { background: var(--success); }
+.dot-disconnected { background: var(--danger); }
+
+/* ── Session list items ──────────────────────────────────────────────────────── */
+.session-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  gap: 4px;
+}
+.session-item:hover        { background: var(--bg-secondary); border-color: var(--border); }
+.session-item.active       { background: var(--bg-secondary); border-color: var(--accent); }
+.session-name              { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.empty-hint                { color: var(--text-muted); font-size: 11px; padding: 6px 4px; }
+
+/* ── Buttons ─────────────────────────────────────────────────────────────────── */
+button {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+button:hover  { border-color: var(--accent); }
+button:active { opacity: 0.8; }
+
+.btn-kill {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 2px 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.btn-kill:hover { color: var(--danger); border: none; }
+
+/* ── Status badges (used by docker/agent options) ────────────────────────────── */
+.status-badge           { font-size: 11px; padding: 1px 6px; border-radius: 10px; border: 1px solid; }
+.s-running, .s-active   { color: var(--success); border-color: var(--success); }
+.s-stopped, .s-inactive { color: var(--text-muted); border-color: var(--border); }
+.s-starting             { color: var(--warning); border-color: var(--warning); }
+.s-stopping             { color: var(--warning); border-color: var(--warning); }
+.s-error                { color: var(--danger);  border-color: var(--danger); }
+.s-unknown              { color: var(--text-muted); border-color: var(--border); }
