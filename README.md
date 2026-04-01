@@ -8,13 +8,24 @@ A collection of reference implementations and a reusable skill for building **tm
 
 ```
 webTui/
+├── cluade.md              ← scope to open working on this project in Claude
+
 ├── WEBTUI_SKILL.md        ← The skill document (start here)
 ├── scripts/               ← Copy-paste templates referenced by the skill
 │   ├── core/              ← Required base files for every new app
 │   └── options/           ← Optional feature modules (A–J)
+
 └── test/
     └── devmon/            ← Demo app built from the skill
+
 ```
+
+## dev env
+
+When Claude Code starts in a directory, it automatically loads CLAUDE.md as its system contex
+* open the current scopr to continue working on the skill and its templates
+* start process started with ``` --cwd ..../webTui ``` gets the full skill context automatically
+
 
 ---
 
@@ -120,3 +131,23 @@ Always apply before exposing on a network:
 - Use `yaml.safe_load()` everywhere — never `yaml.load()`
 - Validate file paths with `normpath` + `startswith` before reads/writes
 - Use the XSS `esc()` helper on all user-controlled HTML injections
+
+## activate/run modes
+
+!!!! the path must be absolute — the sub-agent has no cwd context, so relative paths will fail silently.
+
+### external non-interactive mode
+* -p runs non-interactively — fires the prompt, executes, returns output, exits.
+
+
+```bash
+claude -p "Read /abs/path/to/WEBTUI_SKILL.md then scaffold app X at /output/path with options A and B for ...."  // need to tell what to run in the Xapp;
+```
+
+### interactive
+
+* You just say it in natural language for the current project scope;
+```  
+  use the Agent tool — read /abs/path/to/WEBTUI_SKILL.md
+  and scaffold app X at /output/path with options A and B for the current project.
+```
