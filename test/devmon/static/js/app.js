@@ -71,8 +71,12 @@ function initTerminal() {
   });
 
   // Mouse wheel → tmux copy-mode scrollback
+  // capture:true + stopPropagation() are REQUIRED: xterm.js attaches its own wheel listener
+  // to its internal viewport child element. Without capture phase, xterm consumes the event
+  // first and scroll only works with Shift+wheel. Capture fires our handler before xterm's.
   el('terminal-container').addEventListener('wheel', e => {
     e.preventDefault();
+    e.stopPropagation();
     if (!state.currentSession) return;
     const up    = e.deltaY < 0;
     const lines = Math.max(1, Math.round(Math.abs(e.deltaY) / 30));
@@ -88,7 +92,7 @@ function initTerminal() {
         lines,
       });
     }
-  }, { passive: false });
+  }, { passive: false, capture: true });
 }
 
 // ── Socket.IO ─────────────────────────────────────────────────────────────────
